@@ -1,22 +1,22 @@
 conll16st_data
 ==============
 
-Although the data format for the [*CoNLL 2016 Shared Task*](http://www.cs.brandeis.edu/~clp/conll16st/) (Multilingual Shallow Discourse Parsing) seems useful from the human perspective, it is very specific and needs a lot of preprocessing to be used in machine learning. To make your life in *Python* easier, we developed ***conll16st_data*** preprocessor with the goal to represent the data in an even simpler and task-agnostic way.
+Although the data format for the [*CoNLL 2016 Shared Task*](http://www.cs.brandeis.edu/~clp/conll16st/) (Multilingual Shallow Discourse Parsing) seems useful from the human perspective, it is very specific and needs a lot of preprocessing to be used in machine learning context. To make your life easier, we developed this **data preprocessor** with the goal to access *CoNLL16st*/*CoNLL15st* datasets from *Python* in an even **simpler and task-agnostic representation**.
 
 - <http://www.cs.brandeis.edu/~clp/conll16st/>
 - <http://github.com/attapol/conll16st/>
 - <http://github.com/gw0/conll16st_data/>
 
 
-Preparation
-===========
+Installation
+============
 
-Install requirements, get code, and locate your dataset (eg. `./conll16st_data/conll16st-en-trial/`):
+Install requirements, get source code, and locate your dataset (eg. `./conll16st_data/conll16st-en-trial/`):
 
 ```bash
 $ pip install pyparsing
 $ git clone http://github.com/gw0/conll16st_data/
-$ ls ./conll16st_data/conll16st-en-trial/
+$ ls -1 ./conll16st_data/conll16st-en-trial/
 parses.json
 raw/
 relations.json
@@ -27,7 +27,7 @@ relations-no-senses.json
 Basic usage
 ===========
 
-Load whole **dataset as object**:
+Load whole **dataset as object** and iterate over first words and POS tags:
 
 ```python
 from conll16st_data.load import Conll16stDataset
@@ -44,12 +44,13 @@ for doc_id in train['doc_ids']:
 ```
 
 ```bash
-$ python aa.py load dataset for training
+$ python example.py
+load dataset for training
   ./conll16st_data/conll16st-en-trial/: doc_ids: 1, words: 896, rel_ids: 29, relation tokens: 1064
 wsj_1000: first word is 'Kemper' with POS tag 'NNP'
 ```
 
-Load filtered **dataset in separate Python dictionaries**:
+Alternatively load **dataset into Python dictionaries** and filter by document ids, discourse types and senses:
 
 ```python
 from conll16st_data.load import load_all
@@ -58,7 +59,9 @@ doc_ids = ["wsj_1000"]
 filter_types = ["Explicit"]
 filter_senses = ["Contingency.Condition"]
 
-doc_ids, words, word_metas, pos_tags, dependencies, parsetrees, rel_ids, rel_parts, rel_types, rel_senses, relations_gold = load_all("./conll16st_data/conll16st-en-trial/", doc_ids=doc_ids, filter_types=filter_types, filter_senses=filter_senses)
+doc_ids, words, word_metas, pos_tags, dependencies, parsetrees, \
+rel_ids, rel_parts, rel_types, rel_senses, relations_gold = \
+  load_all("./conll16st_data/conll16st-en-trial/", doc_ids=doc_ids, filter_types=filter_types, filter_senses=filter_senses)
 ```
 
 
@@ -94,7 +97,7 @@ relations[14905] = {
 }
 ```
 
-Extract data by document id and token id:
+Extract data by document id and token id (`words`, `pos_tags`, `word_metas`):
 
 ```python
 from words import get_words, get_pos_tags, get_word_metas
@@ -119,7 +122,7 @@ word_metas['wsj_1000'][0] = {
 }
 ```
 
-Extract data by document id and token id pairs:
+Extract data by document id and token id pairs (`dependencies`):
 
 ```python
 from dependencies import get_dependencies
@@ -132,7 +135,7 @@ dependencies = get_dependencies(parses)
 dependencies["wsj_1000"][3][0] = "nn"
 ```
 
-Extract data by document id:
+Extract data by document id (`parsetrees`):
 
 ```python
 from parsetrees import get_parsetrees
@@ -145,7 +148,7 @@ parsetrees = get_parsetrees(parses)
 parsetrees["wsj_1000"][0] = [[u'S', [u'NP', [u'NNP', 0], [u'NNP', 1], [u'NNPS', 2], ...
 ```
 
-Extract data by relation id:
+Extract data by relation id (`rel_parts`, `rel_ids`, `rel_types`, `rel_senses`):
 
 ```python
 from relations import get_rel_parts, get_rel_types, get_rel_senses
@@ -196,7 +199,7 @@ word_metas['wsj_1000'][0] = {
 Development
 ===========
 
-Install requirements (preferred with *virtualenv*) and get source code:
+Install requirements (with *virtualenv*) and get source code:
 
 ```bash
 $ virtualenv venv

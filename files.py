@@ -75,7 +75,7 @@ def load_raws(dataset_dir, doc_ids, raw_ffmts=None):
     return raws
 
 
-def load_relations_gold(dataset_dir, with_senses=True, with_rawtext=False, doc_ids=None, filter_types=None, filter_senses=None, relations_ffmts=None):
+def load_relations_gold(dataset_dir, with_senses=True, with_rawtext=False, doc_ids=None, filter_types=None, filter_senses=None, filter_fn=None, relations_ffmts=None):
     """Load shallow discourse relations untouched by relation id from CoNLL16st corpus.
 
         relations[14905] = {
@@ -136,6 +136,10 @@ def load_relations_gold(dataset_dir, with_senses=True, with_rawtext=False, doc_i
                     relation['Punctuation']['PunctuationType'] = ""
                 if 'TokenList' not in relation['Punctuation']:
                     relation['Punctuation']['TokenList'] = []
+
+                # filter by lambda expression on relation
+                if filter_fn and filter_fn(relation):
+                    continue
 
                 # remove type and sense information
                 if not with_senses:

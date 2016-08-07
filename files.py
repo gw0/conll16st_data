@@ -72,6 +72,8 @@ def load_raws(dataset_dir, doc_ids, raw_ffmts=None):
                 break  # skip other filenames
             except IOError:
                 pass
+        if not raws[doc_id]:
+            raise IOError("Failed to load raw text ({})!".format(doc_id))
     return raws
 
 

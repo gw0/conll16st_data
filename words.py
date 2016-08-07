@@ -76,6 +76,8 @@ def get_word_metas(parses, raws):
                 word = token[0]
 
                 # check for paragraph separator
+                if doc_id not in raws:
+                    raise Exception("Missing raw text ({})".format(doc_id))
                 skipped_str = raws[doc_id][prev_token_end:token[1]['CharacterOffsetBegin']]
                 if re.match(paragraph_sep, skipped_str, flags=re.MULTILINE):
                     paragraph_id += 1

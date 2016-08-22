@@ -53,15 +53,16 @@ def load_all(dataset_dir, doc_ids=None, filter_types=None, filter_senses=None, f
 class Conll16stDataset(dict):
     """CoNLL16st dataset holder as dict."""
 
-    def __init__(self, dataset_dir, doc_ids=None, filter_types=None, filter_senses=None, filter_fn=None):
+    def __init__(self, dataset_dir, lang='?', doc_ids=None, filter_types=None, filter_senses=None, filter_fn=None):
         self.dataset_dir = dataset_dir
         self.filter_types = filter_types
         self.filter_senses = filter_senses
         self.filter_fn = filter_fn
 
+        self['lang'] = lang
         self['doc_ids'], self['words'], self['word_metas'], self['pos_tags'], self['dependencies'], self['parsetrees'], self['rel_ids'], self['rel_parts'], self['rel_types'], self['rel_senses'], self['relations_gold'] = load_all(dataset_dir, doc_ids, filter_types, filter_senses, filter_fn)
         if not self['doc_ids']:
             raise IOError("Failed to load dataset ({})!".format(dataset_dir))
 
     def summary(self):
-        return "  {}: doc_ids: {}, words: {}, rel_ids: {}, relation tokens: {}".format(self.dataset_dir, len(self['doc_ids']), sum([ len(s) for s in self['words'].itervalues() ]), len(self['rel_ids']), sum([ self['rel_parts'][rel_id]['TokenCount'] for rel_id in self['rel_parts'] ]))
+        return "  {}: lang: {}, doc_ids: {}, words: {}, rel_ids: {}, relation tokens: {}".format(self.dataset_dir, self['lang'], len(self['doc_ids']), sum([ len(s) for s in self['words'].itervalues() ]), len(self['rel_ids']), sum([ self['rel_parts'][rel_id]['TokenCount'] for rel_id in self['rel_parts'] ]))

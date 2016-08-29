@@ -65,4 +65,4 @@ class Conll16stDataset(dict):
             raise IOError("Failed to load dataset ({})!".format(dataset_dir))
 
     def summary(self):
-        return "  {}: lang: {}, doc_ids: {}, words: {}, rel_ids: {}, relation tokens: {}".format(self.dataset_dir, self['lang'], len(self['doc_ids']), sum([ len(s) for s in self['words'].itervalues() ]), len(self['rel_ids']), sum([ self['rel_parts'][rel_id]['TokenCount'] for rel_id in self['rel_parts'] ]))
+        return "lang: {}, doc_ids: {}, words: {}, rel_ids: {}, relation tokens: {}".format(self['lang'], len(self['doc_ids']), sum([ len(s) for s in self['words'].itervalues() ]), len(self['rel_ids']), sum([ self['rel_parts'][rel_id]['TokenCount'] for rel_id in self['rel_parts'] ]))

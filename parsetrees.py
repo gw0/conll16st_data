@@ -16,17 +16,17 @@ def get_parsetrees(parses):
     """Extract parse trees of token ids by document id from CoNLL16st corpus.
 
         # "( (S (NP (NNP Kemper) (NNP Financial) (NNPS Services)..." is represented as:
-        parsetrees["wsj_1000"][0] = [[u'S', [u'NP', [u'NNP', 0], [u'NNP', 1], [u'NNPS', 2], ...
+        parsetrees["wsj_1000"][0] = (u'S', (u'NP', (u'NNP', 0), (u'NNP', 1), (u'NNPS', 2), ...
     """
     sub_begin = "("
     sub_end = ")"
     m = {}  # mutable in helper function
 
     def _is_list(o, list_types=(list, tuple, set)):
-        return any([ isinstance(o, t)  for t in list_types ])
+        return any(( isinstance(o, t)  for t in list_types ))
 
     def _is_string(o, string_types=(str, unicode)):
-        return any([ isinstance(o, t)  for t in string_types ])
+        return any(( isinstance(o, t)  for t in string_types ))
 
     def _is_token_leaf(o):
         return len(o) == 2 and _is_string(o[0]) and not _is_list(o[1])
@@ -36,9 +36,9 @@ def get_parsetrees(parses):
             if _is_token_leaf(tree):  # leaf with token found
                 tree[1] = m['token_id']
                 m['token_id'] += 1
-                return tree
+                return tuple(tree)
             else:
-                return [ _replace_tokens(t)  for t in tree ]
+                return tuple( _replace_tokens(t)  for t in tree )
         else:
             return tree
 
@@ -68,12 +68,12 @@ def test_parsetrees():
     t_doc_id = "wsj_1000"
     t_s0_p0 = "S"
     t_s0_p1 = "NP"
-    t_s0_p2 = ["NNP", 0]  #= "(NNP Kemper)"
-    t_s0_p3 = ["NNP", 1]  #= "(NNP Financial)"
-    t_s0_p4 = ["NNPS", 2]  #= "(NNPS Services)"
-    t_s32_p0 = [".", 895]  #= "(. .)"
-    t_s32_p1 = ["JJ", 894]  #= "(JJ important)"
-    t_s32_p2 = ["RBR", 893]  #= "(RBR more)"
+    t_s0_p2 = ("NNP", 0)  #= "(NNP Kemper)"
+    t_s0_p3 = ("NNP", 1)  #= "(NNP Financial)"
+    t_s0_p4 = ("NNPS", 2)  #= "(NNPS Services)"
+    t_s32_p0 = (".", 895) #= "(. .)"
+    t_s32_p1 = ("JJ", 894)  #= "(JJ important)"
+    t_s32_p2 = ("RBR", 893)  #= "(RBR more)"
 
     parses = load_parses(dataset_dir)
     parsetrees = get_parsetrees(parses)

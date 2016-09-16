@@ -53,8 +53,8 @@ def get_word_metas(parses, raws):
             'SentenceID': 0,
             'SentenceOffset': 0,
             'TokenID': 0,
-            'RelationIDs': [14890],
-            'RelationParts': ['Arg1'],
+            'RelationIDs': (14890,),
+            'RelationParts': ('Arg1',),
         }
     """
     paragraph_sep="^\W*\n\n\W*$"  # regex for paragraph separator
@@ -99,8 +99,8 @@ def get_word_metas(parses, raws):
                     'SentenceID': sentence_id,
                     'SentenceOffset': sentence_offset,
                     'TokenID': token_id,
-                    'RelationIDs': rel_ids,
-                    'RelationParts': rel_spans,
+                    'RelationIDs': tuple(rel_ids),
+                    'RelationParts': tuple(rel_spans),
                 }
                 word_metas[doc_id].append(meta)
                 token_id += 1
@@ -142,8 +142,8 @@ def test_word_metas():
         'SentenceID': 0,
         'SentenceOffset': 0,
         'TokenID': 0,
-        'RelationIDs': [14890],
-        'RelationParts': ['Arg1'],
+        'RelationIDs': (14890,),
+        'RelationParts': ('Arg1',),
     }
     t_meta1 = {
         'Text': 'important',
@@ -152,8 +152,8 @@ def test_word_metas():
         'SentenceID': 32,
         'SentenceOffset': 877,
         'TokenID': 894,
-        'RelationIDs': [14904, 14905],
-        'RelationParts': ['Arg2', 'Arg2'],
+        'RelationIDs': (14904, 14905),
+        'RelationParts': ('Arg2', 'Arg2'),
     }
     t_meta2 = {
         'Text': '.',
@@ -162,8 +162,8 @@ def test_word_metas():
         'SentenceID': 32,
         'SentenceOffset': 877,
         'TokenID': 895,
-        'RelationIDs': [],
-        'RelationParts': []
+        'RelationIDs': (),
+        'RelationParts': (),
     }
 
     parses = load_parses(dataset_dir)

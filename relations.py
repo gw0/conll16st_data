@@ -30,7 +30,7 @@ def filter_tags(tags, prefixes=None):
 
     if prefixes is not None:
         # filter by specified relation tag prefixes
-        tags = [ t  for t in tags if any([ t.startswith(p)  for p in prefixes ]) ]
+        tags = tuple( t  for t in tags if any(( t.startswith(p)  for p in prefixes )) )
     return tags
 
 
@@ -46,13 +46,13 @@ def get_rel_parts(relations_gold):
     """Extract only discourse relation parts/spans of token ids by relation id from CoNLL16st corpus.
 
         rel_parts[14905] = {
-            'Arg1': [879, 880, 881, 882, 883, 884, 885, 886],
+            'Arg1': (879, 880, 881, 882, 883, 884, 885, 886),
             'Arg1Len': 46,
-            'Arg2': [877, 889, 890, 891, 892, 893, 894],
+            'Arg2': (877, 889, 890, 891, 892, 893, 894),
             'Arg2Len': 36,
-            'Connective': [878, 888],
+            'Connective': (878, 888),
             'ConnectiveLen': 6,
-            'Punctuation': [],
+            'Punctuation': (),
             'PunctuationLen': 0,
             'PunctuationType': '',
             'DocID': 'wsj_1000',
@@ -69,17 +69,17 @@ def get_rel_parts(relations_gold):
         punct_type = gold['Punctuation']['PunctuationType']
 
         # short token lists from detailed/gold format to only token id
-        arg1_list = [ t[2]  for t in gold['Arg1']['TokenList'] ]
-        arg2_list = [ t[2]  for t in gold['Arg2']['TokenList'] ]
-        conn_list = [ t[2]  for t in gold['Connective']['TokenList'] ]
-        punct_list = [ t[2]  for t in gold['Punctuation']['TokenList'] ]
-        all_list = sum([arg1_list, arg2_list, conn_list, punct_list], [])
+        arg1_list = tuple( t[2]  for t in gold['Arg1']['TokenList'] )
+        arg2_list = tuple( t[2]  for t in gold['Arg2']['TokenList'] )
+        conn_list = tuple( t[2]  for t in gold['Connective']['TokenList'] )
+        punct_list = tuple( t[2]  for t in gold['Punctuation']['TokenList'] )
+        all_list = sum([list(arg1_list), list(arg2_list), list(conn_list), list(punct_list)], [])
 
         # character lengths of parts
-        arg1_len = sum([ (e - b)  for b, e in gold['Arg1']['CharacterSpanList'] ])
-        arg2_len = sum([ (e - b)  for b, e in gold['Arg2']['CharacterSpanList'] ])
-        conn_len = sum([ (e - b)  for b, e in gold['Connective']['CharacterSpanList'] ])
-        punct_len = sum([ (e - b)  for b, e in gold['Punctuation']['CharacterSpanList'] ])
+        arg1_len = sum(( (e - b)  for b, e in gold['Arg1']['CharacterSpanList'] ))
+        arg2_len = sum(( (e - b)  for b, e in gold['Arg2']['CharacterSpanList'] ))
+        conn_len = sum(( (e - b)  for b, e in gold['Connective']['CharacterSpanList'] ))
+        punct_len = sum(( (e - b)  for b, e in gold['Punctuation']['CharacterSpanList'] ))
 
         # save relation parts
         rel = {
@@ -138,22 +138,23 @@ def add_relation_tags(word_metas, rel_types, rel_senses):
 
         word_metas['wsj_1000'][0] = {
             ...
-            'RelationTags': ["Explicit:Expansion.Conjunction:14890:Arg1"],
+            'RelationTags': ("Explicit:Expansion.Conjunction:14890:Arg1",),
         }
     """
 
     for doc_id in word_metas:
         for meta in word_metas[doc_id]:
-            meta['RelationTags'] = []
+            tags = []
             for rel_id, rel_part in zip(meta['RelationIDs'], meta['RelationParts']):
                 if rel_id not in rel_types or rel_id not in rel_senses:
                     continue  # skip missing relations
 
                 rel_type = rel_types[rel_id]
                 rel_sense = rel_senses[rel_id]
+                tags.append(rtsip_to_tag(rel_type, rel_sense, rel_id, rel_part))
 
-                # save to metadata
-                meta['RelationTags'].append(rtsip_to_tag(rel_type, rel_sense, rel_id, rel_part))
+            # save to metadata
+            meta['RelationTags'] = tuple(tags)
 
 
 ### Tests
@@ -161,13 +162,13 @@ def add_relation_tags(word_metas, rel_types, rel_senses):
 def test_rel_parts():
     dataset_dir = "./conll16st-en-trial"
     t_rel0 = {
-        'Arg1': [879, 880, 881, 882, 883, 884, 885, 886],
+        'Arg1': (879, 880, 881, 882, 883, 884, 885, 886),
         'Arg1Len': 46,
-        'Arg2': [877, 889, 890, 891, 892, 893, 894],
+        'Arg2': (877, 889, 890, 891, 892, 893, 894),
         'Arg2Len': 36,
-        'Connective': [878, 888],
+        'Connective': (878, 888),
         'ConnectiveLen': 6,
-        'Punctuation': [],
+        'Punctuation': (),
         'PunctuationLen': 0,
         'PunctuationType': '',
         'DocID': 'wsj_1000',
@@ -213,11 +214,11 @@ def test_relation_tags():
     dataset_dir = "./conll16st-en-trial"
     doc_id = "wsj_1000"
     t_meta0_id = 0
-    t_meta0_tags = ['Explicit:Expansion.Conjunction:14890:Arg1']
+    t_meta0_tags = ('Explicit:Expansion.Conjunction:14890:Arg1',)
     t_meta1_id = 894
-    t_meta1_tags = ['Explicit:Comparison.Concession:14904:Arg2', 'Explicit:Contingency.Condition:14905:Arg2']
+    t_meta1_tags = ('Explicit:Comparison.Concession:14904:Arg2', 'Explicit:Contingency.Condition:14905:Arg2')
     t_meta2_id = 895
-    t_meta2_tags = []
+    t_meta2_tags = ()
 
     parses = load_parses(dataset_dir)
     raws = load_raws(dataset_dir, [doc_id])

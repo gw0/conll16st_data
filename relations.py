@@ -118,19 +118,36 @@ def get_rel_types(relations_gold, filter_types=None):
 
 
 def get_rel_senses(relations_gold, level=None, filter_senses=None):
-    """Extract discourse relation senses by relation id from CoNLL16st corpus.
+    """Extract first discourse relation senses by relation id from CoNLL16st corpus.
 
         rel_senses[14905] = "Contingency.Condition"
     """
 
     rel_senses = {}
     for rel_id, gold in relations_gold.iteritems():
-        rel_sense = gold['Sense'][0]  # only first sense
-        if filter_senses and rel_sense not in filter_senses:
+        sfirst = gold['Sense'][0]  # only first sense
+        if filter_senses and sfirst not in filter_senses:
             continue
-        rel_sense = strip_sense_level(rel_sense, level)  # strip to top level senses
-        rel_senses[rel_id] = rel_sense
+        sfirst = strip_sense_level(sfirst, level)  # strip to top level senses
+        rel_senses[rel_id] = sfirst
     return rel_senses
+
+
+def get_rel_senses_all(relations_gold, level=None, filter_senses=None):
+    """Extract all discourse relation senses by relation id from CoNLL16st corpus.
+
+        rel_senses_all[14905] = ("Contingency.Condition")
+    """
+    if filter_senses is None:
+        filter_senses = ()
+
+    rel_senses_all = {}
+    for rel_id, gold in relations_gold.iteritems():
+        slist = gold['Sense']
+        slist = [ s for s in slist if s not in filter_senses ]
+        slist = [ strip_sense_level(s, level) for s in slist ]  # strip to top level senses
+        rel_senses_all[rel_id] = tuple(slist)
+    return rel_senses_all
 
 
 def add_relation_tags(word_metas, rel_types, rel_senses):
@@ -150,8 +167,11 @@ def add_relation_tags(word_metas, rel_types, rel_senses):
                     continue  # skip missing relations
 
                 rel_type = rel_types[rel_id]
-                rel_sense = rel_senses[rel_id]
-                tags.append(rtsip_to_tag(rel_type, rel_sense, rel_id, rel_part))
+                rel_sense_all = rel_senses[rel_id]
+                if isinstance(rel_sense_all, str):  # only first sense
+                    rel_sense_all = (rel_sense_all,)
+                for rel_sense in rel_senses[rel_id]:
+                    tags.append(rtsip_to_tag(rel_type, rel_sense, rel_id, rel_part))
 
             # save to metadata
             meta['RelationTags'] = tuple(tags)
@@ -207,6 +227,23 @@ def test_rel_senses():
 
     relations_gold = load_relations_gold(dataset_dir)
     rel_senses = get_rel_senses(relations_gold, level=1)
+    rel1 = rel_senses[t_rel1_id]
+    assert rel1 == t_rel1
+
+def test_rel_senses_all():
+    dataset_dir = "./conll16st-en-trial"
+    t_rel0_id = 14905
+    t_rel0 = ('Contingency.Condition',)
+    t_rel1_id = 14905
+    t_rel1 = ('Contingency',)
+
+    relations_gold = load_relations_gold(dataset_dir)
+    rel_senses = get_rel_senses_all(relations_gold)
+    rel0 = rel_senses[t_rel0_id]
+    assert rel0 == t_rel0
+
+    relations_gold = load_relations_gold(dataset_dir)
+    rel_senses = get_rel_senses_all(relations_gold, level=1)
     rel1 = rel_senses[t_rel1_id]
     assert rel1 == t_rel1
 

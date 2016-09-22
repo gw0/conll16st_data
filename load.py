@@ -11,10 +11,10 @@ from files import load_parses, load_raws, load_relations_gold
 from words import get_words, get_pos_tags, get_word_metas
 from dependencies import get_dependencies
 from parsetrees import get_parsetrees
-from relations import get_rel_parts, get_rel_types, get_rel_senses, add_relation_tags
+from relations import get_rel_parts, get_rel_types, get_rel_senses, get_rel_senses_all, add_relation_tags
 
 
-def load_all(dataset_dir, doc_ids=None, filter_types=None, filter_senses=None, filter_fn=None):
+def load_all(dataset_dir, doc_ids=None, filter_types=None, filter_senses=None, filter_fn=None, with_rel_senses_all=False):
     """Load whole CoNLL16st dataset by document id."""
 
     # load all provided files untouched
@@ -42,7 +42,10 @@ def load_all(dataset_dir, doc_ids=None, filter_types=None, filter_senses=None, f
     rel_parts = get_rel_parts(relationsnos_gold)
     rel_ids = sorted(rel_parts.keys())
     rel_types = get_rel_types(relations_gold)
-    rel_senses = get_rel_senses(relations_gold)
+    if with_rel_senses_all:
+        rel_senses = get_rel_senses_all(relations_gold)
+    else:
+        rel_senses = get_rel_senses(relations_gold)
 
     # add extra fields
     add_relation_tags(word_metas, rel_types, rel_senses)
@@ -53,14 +56,14 @@ def load_all(dataset_dir, doc_ids=None, filter_types=None, filter_senses=None, f
 class Conll16stDataset(dict):
     """CoNLL16st dataset holder as dict."""
 
-    def __init__(self, dataset_dir, lang='?', doc_ids=None, filter_types=None, filter_senses=None, filter_fn=None):
+    def __init__(self, dataset_dir, lang='?', doc_ids=None, filter_types=None, filter_senses=None, filter_fn=None, with_rel_senses_all=False):
         self.dataset_dir = dataset_dir
         self.filter_types = filter_types
         self.filter_senses = filter_senses
         self.filter_fn = filter_fn
 
         self['lang'] = lang
-        self['doc_ids'], self['words'], self['word_metas'], self['pos_tags'], self['dependencies'], self['parsetrees'], self['rel_ids'], self['rel_parts'], self['rel_types'], self['rel_senses'], self['relations_gold'] = load_all(dataset_dir, doc_ids, filter_types, filter_senses, filter_fn)
+        self['doc_ids'], self['words'], self['word_metas'], self['pos_tags'], self['dependencies'], self['parsetrees'], self['rel_ids'], self['rel_parts'], self['rel_types'], self['rel_senses'], self['relations_gold'] = load_all(dataset_dir, doc_ids=doc_ids, filter_types=filter_types, filter_senses=filter_senses, filter_fn=filter_fn, with_rel_senses_all=with_rel_senses_all)
         if not self['doc_ids']:
             raise IOError("Failed to load dataset ({})!".format(dataset_dir))
 

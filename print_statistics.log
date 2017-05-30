@@ -1,0 +1,484 @@
+load dataset 'data/conll15st-en-03-29-16-blind-test'
+lang: ?, doc_ids: 71, words: 34621, rel_ids: 1209, relation tokens: 44203
+
+Types:
+- AltLex: 28
+- EntRel: 200
+- Explicit: 556
+- Implicit: 425
+
+Senses:
+- Comparison.Concession: 112
+- Comparison.Contrast: 58
+- Contingency.Cause.Reason: 92
+- Contingency.Cause.Result: 68
+- Contingency.Condition: 27
+- EntRel: 200
+- Expansion.Alternative: 15
+- Expansion.Conjunction: 331
+- Expansion.Instantiation: 44
+- Expansion.Restatement: 152
+- Temporal.Asynchronous.Precedence: 50
+- Temporal.Asynchronous.Succession: 65
+- Temporal.Synchrony: 55
+
+Senses with prepended types:
+- Explicit:Expansion.Conjunction: 217
+- EntRel:EntRel: 200
+- Implicit:Expansion.Restatement: 141
+- Implicit:Expansion.Conjunction: 106
+- Explicit:Comparison.Concession: 81
+- Explicit:Temporal.Asynchronous.Succession: 65
+- Explicit:Temporal.Synchrony: 52
+- Explicit:Contingency.Cause.Reason: 50
+- Implicit:Contingency.Cause.Reason: 42
+- Explicit:Temporal.Asynchronous.Precedence: 40
+- Implicit:Expansion.Instantiation: 37
+- Implicit:Contingency.Cause.Result: 33
+- Implicit:Comparison.Concession: 30
+- Explicit:Comparison.Contrast: 29
+- Explicit:Contingency.Cause.Result: 28
+- Explicit:Contingency.Condition: 27
+- Implicit:Comparison.Contrast: 27
+- Implicit:Temporal.Asynchronous.Precedence: 10
+- Explicit:Expansion.Alternative: 10
+- AltLex:Expansion.Conjunction: 8
+- AltLex:Contingency.Cause.Result: 7
+- Explicit:Expansion.Restatement: 6
+- AltLex:Expansion.Restatement: 5
+- Implicit:Expansion.Alternative: 4
+- AltLex:Expansion.Instantiation: 4
+- Explicit:Expansion.Instantiation: 3
+- Implicit:Temporal.Synchrony: 3
+- AltLex:Comparison.Contrast: 2
+- AltLex:Comparison.Concession: 1
+- AltLex:Expansion.Alternative: 1
+
+load dataset 'data/conll16st-en-03-29-16-dev'
+lang: ?, doc_ids: 79, words: 39712, rel_ids: 1436, relation tokens: 48882
+
+Types:
+- AltLex: 19
+- EntRel: 215
+- Explicit: 680
+- Implicit: 522
+
+Senses:
+- Comparison: 21
+- Comparison.Concession: 17
+- Comparison.Contrast: 257
+- Contingency.Cause.Reason: 147
+- Contingency.Cause.Result: 81
+- Contingency.Condition: 52
+- EntRel: 215
+- Expansion: 6
+- Expansion.Alternative: 6
+- Expansion.Alternative.Chosen alternative: 8
+- Expansion.Conjunction: 310
+- Expansion.Instantiation: 58
+- Expansion.Restatement: 110
+- Temporal: 1
+- Temporal.Asynchronous.Precedence: 78
+- Temporal.Asynchronous.Succession: 55
+- Temporal.Synchrony: 100
+
+Senses with prepended types:
+- EntRel:EntRel: 215
+- Explicit:Expansion.Conjunction: 185
+- Explicit:Comparison.Contrast: 167
+- Implicit:Expansion.Conjunction: 122
+- Implicit:Expansion.Restatement: 103
+- Implicit:Comparison.Contrast: 88
+- Explicit:Temporal.Synchrony: 80
+- Implicit:Contingency.Cause.Reason: 73
+- Explicit:Contingency.Cause.Reason: 69
+- Explicit:Contingency.Condition: 52
+- Implicit:Contingency.Cause.Result: 52
+- Explicit:Temporal.Asynchronous.Succession: 52
+- Explicit:Temporal.Asynchronous.Precedence: 50
+- Implicit:Expansion.Instantiation: 48
+- Implicit:Temporal.Asynchronous.Precedence: 26
+- Explicit:Contingency.Cause.Result: 25
+- Explicit:Comparison: 20
+- Implicit:Temporal.Synchrony: 19
+- Explicit:Comparison.Concession: 12
+- Explicit:Expansion.Instantiation: 9
+- Implicit:Expansion: 6
+- Explicit:Expansion.Restatement: 6
+- Explicit:Expansion.Alternative.Chosen alternative: 6
+- Explicit:Expansion.Alternative: 6
+- AltLex:Contingency.Cause.Reason: 5
+- Implicit:Comparison.Concession: 5
+- AltLex:Contingency.Cause.Result: 4
+- Implicit:Temporal.Asynchronous.Succession: 3
+- AltLex:Expansion.Conjunction: 3
+- Implicit:Expansion.Alternative.Chosen alternative: 2
+- AltLex:Comparison.Contrast: 2
+- AltLex:Temporal.Asynchronous.Precedence: 2
+- AltLex:Expansion.Restatement: 1
+- Explicit:Temporal: 1
+- Implicit:Comparison: 1
+- AltLex:Temporal.Synchrony: 1
+- AltLex:Expansion.Instantiation: 1
+
+load dataset 'data/conll16st-en-03-29-16-test'
+lang: ?, doc_ids: 91, words: 55453, rel_ids: 1939, relation tokens: 67006
+
+Types:
+- AltLex: 30
+- EntRel: 217
+- Explicit: 923
+- Implicit: 769
+
+Senses:
+- Comparison: 1
+- Comparison.Concession: 34
+- Comparison.Contrast: 405
+- Contingency.Cause.Reason: 212
+- Contingency.Cause.Result: 148
+- Contingency.Condition: 70
+- EntRel: 217
+- Expansion: 3
+- Expansion.Alternative: 5
+- Expansion.Alternative.Chosen alternative: 18
+- Expansion.Conjunction: 404
+- Expansion.Instantiation: 91
+- Expansion.Restatement: 200
+- Temporal.Asynchronous.Precedence: 48
+- Temporal.Asynchronous.Succession: 71
+- Temporal.Synchrony: 89
+
+Senses with prepended types:
+- Explicit:Comparison.Contrast: 277
+- Explicit:Expansion.Conjunction: 249
+- EntRel:EntRel: 217
+- Implicit:Expansion.Restatement: 190
+- Implicit:Expansion.Conjunction: 147
+- Implicit:Comparison.Contrast: 127
+- Implicit:Contingency.Cause.Reason: 116
+- Implicit:Contingency.Cause.Result: 89
+- Explicit:Contingency.Cause.Reason: 88
+- Explicit:Temporal.Synchrony: 84
+- Explicit:Contingency.Condition: 70
+- Implicit:Expansion.Instantiation: 69
+- Explicit:Temporal.Asynchronous.Succession: 66
+- Explicit:Contingency.Cause.Result: 51
+- Explicit:Temporal.Asynchronous.Precedence: 38
+- Explicit:Comparison.Concession: 28
+- Explicit:Expansion.Instantiation: 21
+- Implicit:Expansion.Alternative.Chosen alternative: 15
+- Explicit:Expansion.Restatement: 9
+- Implicit:Temporal.Asynchronous.Precedence: 8
+- AltLex:Contingency.Cause.Result: 8
+- AltLex:Expansion.Conjunction: 8
+- AltLex:Contingency.Cause.Reason: 8
+- Implicit:Temporal.Asynchronous.Succession: 5
+- Implicit:Temporal.Synchrony: 5
+- Explicit:Expansion.Alternative: 5
+- Implicit:Comparison.Concession: 5
+- Implicit:Expansion: 3
+- Explicit:Expansion.Alternative.Chosen alternative: 3
+- AltLex:Temporal.Asynchronous.Precedence: 2
+- AltLex:Comparison.Concession: 1
+- AltLex:Expansion.Restatement: 1
+- AltLex:Comparison.Contrast: 1
+- AltLex:Expansion.Instantiation: 1
+- Explicit:Comparison: 1
+
+load dataset 'data/conll16st-en-03-29-16-train'
+lang: ?, doc_ids: 1756, words: 933049, rel_ids: 32535, relation tokens: 1159204
+
+Types:
+- AltLex: 524
+- EntRel: 4133
+- Explicit: 14722
+- Implicit: 13156
+
+Senses:
+- Comparison: 496
+- Comparison.Concession: 1293
+- Comparison.Contrast: 4714
+- Contingency: 8
+- Contingency.Cause: 1
+- Contingency.Cause.Reason: 3344
+- Contingency.Cause.Result: 2137
+- Contingency.Condition: 1197
+- EntRel: 4133
+- Expansion: 105
+- Expansion.Alternative: 210
+- Expansion.Alternative.Chosen alternative: 241
+- Expansion.Conjunction: 7817
+- Expansion.Exception: 15
+- Expansion.Instantiation: 1403
+- Expansion.Restatement: 2699
+- Temporal: 9
+- Temporal.Asynchronous: 3
+- Temporal.Asynchronous.Precedence: 1277
+- Temporal.Asynchronous.Succession: 1014
+- Temporal.Synchrony: 1499
+
+Senses with prepended types:
+- Explicit:Expansion.Conjunction: 4414
+- EntRel:EntRel: 4133
+- Implicit:Expansion.Conjunction: 3308
+- Explicit:Comparison.Contrast: 3024
+- Implicit:Expansion.Restatement: 2514
+- Implicit:Contingency.Cause.Reason: 2098
+- Implicit:Comparison.Contrast: 1657
+- Implicit:Contingency.Cause.Result: 1389
+- Explicit:Temporal.Synchrony: 1271
+- Explicit:Contingency.Condition: 1193
+- Explicit:Contingency.Cause.Reason: 1168
+- Implicit:Expansion.Instantiation: 1134
+- Explicit:Comparison.Concession: 1093
+- Explicit:Temporal.Asynchronous.Succession: 870
+- Explicit:Temporal.Asynchronous.Precedence: 801
+- Explicit:Contingency.Cause.Result: 601
+- Implicit:Temporal.Asynchronous.Precedence: 433
+- Explicit:Comparison: 351
+- Explicit:Expansion.Instantiation: 236
+- Implicit:Temporal.Synchrony: 212
+- Explicit:Expansion.Alternative: 198
+- Implicit:Comparison.Concession: 196
+- AltLex:Contingency.Cause.Result: 147
+- Implicit:Comparison: 145
+- Implicit:Expansion.Alternative.Chosen alternative: 142
+- Explicit:Expansion.Restatement: 126
+- Implicit:Temporal.Asynchronous.Succession: 125
+- Explicit:Expansion.Alternative.Chosen alternative: 99
+- AltLex:Expansion.Conjunction: 95
+- AltLex:Contingency.Cause.Reason: 78
+- Implicit:Expansion: 77
+- AltLex:Expansion.Restatement: 59
+- AltLex:Temporal.Asynchronous.Precedence: 43
+- AltLex:Comparison.Contrast: 33
+- AltLex:Expansion.Instantiation: 33
+- Explicit:Expansion: 26
+- AltLex:Temporal.Asynchronous.Succession: 19
+- AltLex:Temporal.Synchrony: 16
+- Explicit:Expansion.Exception: 13
+- Implicit:Expansion.Alternative: 12
+- Explicit:Temporal: 8
+- Explicit:Contingency: 5
+- AltLex:Comparison.Concession: 4
+- Explicit:Temporal.Asynchronous: 3
+- Implicit:Contingency: 3
+- AltLex:Contingency.Condition: 2
+- AltLex:Expansion: 2
+- Implicit:Contingency.Condition: 2
+- Implicit:Contingency.Cause: 1
+- Implicit:Expansion.Exception: 1
+- Implicit:Temporal: 1
+- AltLex:Expansion.Exception: 1
+
+load dataset 'data/conll16st-en-03-29-16-trial'
+lang: ?, doc_ids: 1, words: 896, rel_ids: 29, relation tokens: 1064
+
+Types:
+- EntRel: 2
+- Explicit: 13
+- Implicit: 14
+
+Senses:
+- Comparison.Concession: 2
+- Comparison.Contrast: 6
+- Contingency.Cause.Reason: 3
+- Contingency.Cause.Result: 3
+- Contingency.Condition: 2
+- EntRel: 2
+- Expansion.Conjunction: 6
+- Expansion.Restatement: 5
+
+Senses with prepended types:
+- Implicit:Expansion.Restatement: 5
+- Explicit:Expansion.Conjunction: 4
+- Explicit:Comparison.Contrast: 3
+- Implicit:Comparison.Contrast: 3
+- Explicit:Contingency.Condition: 2
+- Explicit:Comparison.Concession: 2
+- Implicit:Expansion.Conjunction: 2
+- EntRel:EntRel: 2
+- Implicit:Contingency.Cause.Result: 2
+- Implicit:Contingency.Cause.Reason: 2
+- Explicit:Contingency.Cause.Reason: 1
+- Explicit:Contingency.Cause.Result: 1
+
+load dataset 'data/conll16st-zh-01-08-2016-dev'
+lang: ?, doc_ids: 24, words: 6782, rel_ids: 383, relation tokens: 16859
+
+Types:
+- AltLex: 5
+- EntRel: 50
+- Explicit: 77
+- Implicit: 251
+
+Senses:
+- Causation: 22
+- Conditional: 6
+- Conjunction: 221
+- Contrast: 12
+- EntRel: 50
+- Expansion: 58
+- Progression: 2
+- Purpose: 3
+- Temporal: 9
+
+Senses with prepended types:
+- Implicit:Conjunction: 189
+- EntRel:EntRel: 50
+- Implicit:Expansion: 48
+- Explicit:Conjunction: 32
+- Implicit:Causation: 10
+- Explicit:Causation: 10
+- Explicit:Temporal: 9
+- Explicit:Contrast: 9
+- Explicit:Expansion: 9
+- Explicit:Conditional: 5
+- Implicit:Contrast: 3
+- Explicit:Progression: 2
+- AltLex:Causation: 2
+- AltLex:Purpose: 1
+- AltLex:Expansion: 1
+- Implicit:Purpose: 1
+- AltLex:Conditional: 1
+- Explicit:Purpose: 1
+
+load dataset 'data/conll16st-zh-01-08-2016-test'
+lang: ?, doc_ids: 30, words: 8008, rel_ids: 455, relation tokens: 20413
+
+Types:
+- AltLex: 7
+- EntRel: 71
+- Explicit: 96
+- Implicit: 281
+
+Senses:
+- Causation: 14
+- Conditional: 4
+- Conjunction: 278
+- Contrast: 4
+- EntRel: 71
+- Expansion: 47
+- Progression: 1
+- Purpose: 17
+- Temporal: 20
+
+Senses with prepended types:
+- Implicit:Conjunction: 228
+- EntRel:EntRel: 71
+- Explicit:Conjunction: 50
+- Implicit:Expansion: 40
+- Explicit:Temporal: 19
+- Explicit:Purpose: 11
+- Implicit:Causation: 8
+- Explicit:Expansion: 7
+- AltLex:Purpose: 3
+- Implicit:Purpose: 3
+- Explicit:Contrast: 3
+- Explicit:Causation: 3
+- AltLex:Causation: 3
+- Explicit:Conditional: 3
+- Explicit:Progression: 1
+- AltLex:Temporal: 1
+- Implicit:Contrast: 1
+- Implicit:Conditional: 1
+
+load dataset 'data/conll16st-zh-01-08-2016-train'
+lang: ?, doc_ids: 455, words: 155827, rel_ids: 10240, relation tokens: 475970
+
+Types:
+- AltLex: 211
+- EntRel: 1098
+- Explicit: 2225
+- Implicit: 6706
+
+Senses:
+- Alternative: 18
+- Causation: 456
+- Conditional: 134
+- Conjunction: 6102
+- Contrast: 340
+- EntRel: 1098
+- Expansion: 1435
+- Progression: 75
+- Purpose: 244
+- Temporal: 434
+
+Senses with prepended types:
+- Implicit:Conjunction: 5174
+- Implicit:Expansion: 1188
+- EntRel:EntRel: 1098
+- Explicit:Conjunction: 904
+- Explicit:Temporal: 383
+- Explicit:Contrast: 266
+- Explicit:Expansion: 205
+- Explicit:Causation: 190
+- Implicit:Causation: 187
+- Explicit:Purpose: 164
+- Explicit:Conditional: 100
+- AltLex:Causation: 79
+- Implicit:Contrast: 66
+- Explicit:Progression: 61
+- Implicit:Purpose: 56
+- AltLex:Expansion: 42
+- Implicit:Conditional: 26
+- Implicit:Temporal: 26
+- AltLex:Temporal: 25
+- AltLex:Purpose: 24
+- AltLex:Conjunction: 24
+- Explicit:Alternative: 18
+- AltLex:Contrast: 8
+- AltLex:Conditional: 8
+- AltLex:Progression: 7
+- Implicit:Progression: 7
+
+load dataset 'data/conll16st-zh-04-27-2016-blind-test'
+lang: ?, doc_ids: 64, words: 29892, rel_ids: 2101, relation tokens: 82465
+
+Types:
+- AltLex: 49
+- EntRel: 87
+- Explicit: 566
+- Implicit: 1399
+
+Senses:
+- Alternative: 17
+- Causation: 102
+- Conditional: 57
+- Conjunction: 1216
+- Contrast: 213
+- EntRel: 87
+- Expansion: 270
+- Progression: 7
+- Purpose: 37
+- Temporal: 96
+
+Senses with prepended types:
+- Implicit:Conjunction: 1046
+- Implicit:Expansion: 240
+- Explicit:Contrast: 168
+- Explicit:Conjunction: 163
+- EntRel:EntRel: 87
+- Explicit:Temporal: 80
+- Explicit:Causation: 54
+- Explicit:Conditional: 49
+- Implicit:Contrast: 39
+- Implicit:Causation: 36
+- Explicit:Expansion: 25
+- Implicit:Purpose: 18
+- Explicit:Alternative: 15
+- AltLex:Causation: 12
+- AltLex:Purpose: 10
+- Explicit:Purpose: 9
+- Implicit:Temporal: 9
+- Implicit:Conditional: 8
+- AltLex:Conjunction: 7
+- AltLex:Temporal: 7
+- AltLex:Contrast: 6
+- AltLex:Expansion: 5
+- Explicit:Progression: 3
+- Implicit:Progression: 3
+- Implicit:Alternative: 1
+- AltLex:Alternative: 1
+- AltLex:Progression: 1
+

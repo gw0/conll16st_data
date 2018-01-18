@@ -7,7 +7,7 @@ Process word/token dependencies from CoNLL16st corpus (from `parses.json`).
 __author__ = "GW [http://gw.tnode.com/] <gw.2016@tnode.com>"
 __license__ = "GPLv3+"
 
-from files import load_parses
+from .files import load_parses
 
 
 def get_dependencies(parses):

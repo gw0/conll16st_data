@@ -168,7 +168,7 @@ def strip_relations_gold(relations):
     """Strip type and sense information from shallow discourse relations from CoNLL16st corpus."""
 
     relationsnos = {}
-    for rel_id, relation in relations.iteritems():
+    for rel_id, relation in relations.items():
         relation = dict(relation)  # copy dict
 
         # remove type and sense information

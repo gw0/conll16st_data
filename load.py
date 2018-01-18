@@ -7,11 +7,11 @@ Load CoNLL16st/CoNLL15st dataset.
 __author__ = "GW [http://gw.tnode.com/] <gw.2016@tnode.com>"
 __license__ = "GPLv3+"
 
-from files import load_parses, load_raws, load_relations_gold
-from words import get_words, get_pos_tags, get_word_metas
-from dependencies import get_dependencies
-from parsetrees import get_parsetrees
-from relations import get_rel_parts, get_rel_types, get_rel_senses, get_rel_senses_all, add_relation_tags
+from .files import load_parses, load_raws, load_relations_gold
+from .words import get_words, get_pos_tags, get_word_metas
+from .dependencies import get_dependencies
+from .parsetrees import get_parsetrees
+from .relations import get_rel_parts, get_rel_types, get_rel_senses, get_rel_senses_all, add_relation_tags
 
 
 def load_all(dataset_dir, doc_ids=None, filter_types=None, filter_senses=None, filter_fn=None, with_rel_senses_all=False):
@@ -68,4 +68,4 @@ class Conll16stDataset(dict):
             raise IOError("Failed to load dataset ({})!".format(dataset_dir))
 
     def summary(self):
-        return "lang: {}, doc_ids: {}, words: {}, rel_ids: {}, relation tokens: {}".format(self['lang'], len(self['doc_ids']), sum([ len(s) for s in self['words'].itervalues() ]), len(self['rel_ids']), sum([ self['rel_parts'][rel_id]['TokenCount'] for rel_id in self['rel_parts'] ]))
+        return "lang: {}, doc_ids: {}, words: {}, rel_ids: {}, relation tokens: {}".format(self['lang'], len(self['doc_ids']), sum([ len(s) for s in self['words'].values() ]), len(self['rel_ids']), sum([ self['rel_parts'][rel_id]['TokenCount'] for rel_id in self['rel_parts'] ]))

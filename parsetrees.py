@@ -8,8 +8,9 @@ __author__ = "GW [http://gw.tnode.com/] <gw.2016@tnode.com>"
 __license__ = "GPLv3+"
 
 import pyparsing
+import six
 
-from files import load_parses
+from .files import load_parses
 
 
 def get_parsetrees(parses):
@@ -25,7 +26,7 @@ def get_parsetrees(parses):
     def _is_list(o, list_types=(list, tuple, set)):
         return any(( isinstance(o, t)  for t in list_types ))
 
-    def _is_string(o, string_types=(str, unicode)):
+    def _is_string(o, string_types=six.string_types):
         return any(( isinstance(o, t)  for t in string_types ))
 
     def _is_token_leaf(o):

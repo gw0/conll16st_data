@@ -14,7 +14,7 @@ Installation
 Install requirements, get source code, and locate your dataset (eg. `./conll16st_data/conll16st-en-trial/`):
 
 ```bash
-$ pip install pyparsing
+$ pip install pyparsing six
 $ git clone http://github.com/gw0/conll16st_data/
 $ ls -1 ./conll16st_data/conll16st-en-trial/
 parses.json

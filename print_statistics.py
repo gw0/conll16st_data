@@ -3,7 +3,7 @@
 # pylint: disable=C0103,W0621
 """Print basic statistics of CoNLL 2016 datasets."""
 
-from load import Conll16stDataset
+from .load import Conll16stDataset
 
 
 def count_types(data):
@@ -17,7 +17,7 @@ def count_types(data):
         except KeyError:
             counts[rel_type] = 1
 
-    for name, count in sorted(counts.iteritems(), key=lambda a: a[0]):
+    for name, count in sorted(counts.items(), key=lambda a: a[0]):
         print("- {}: {}".format(name, count))
 
 
@@ -33,7 +33,7 @@ def count_senses(data):
             except KeyError:
                 counts[s] = 1
 
-    for name, count in sorted(counts.iteritems(), key=lambda a: a[0]):
+    for name, count in sorted(counts.items(), key=lambda a: a[0]):
         print("- {}: {}".format(name, count))
 
 def count_tsenses(data):
@@ -50,7 +50,7 @@ def count_tsenses(data):
             except KeyError:
                 counts[k] = 1
 
-    for name, count in sorted(counts.iteritems(), key=lambda a: a[1], reverse=True):
+    for name, count in sorted(counts.items(), key=lambda a: a[1], reverse=True):
         print("- {}: {}".format(name, count))
 
 

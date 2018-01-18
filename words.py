@@ -9,7 +9,7 @@ __license__ = "GPLv3+"
 
 import re
 
-from files import load_parses, load_raws
+from .files import load_parses, load_raws
 
 
 def get_words(parses):

@@ -7,8 +7,8 @@ Process shallow discourse relations from CoNLL16st corpus (from `relations.json`
 __author__ = "GW [http://gw.tnode.com/] <gw.2016@tnode.com>"
 __license__ = "GPLv3+"
 
-from files import load_parses, load_raws, load_relations_gold
-from words import get_word_metas
+from .files import load_parses, load_raws, load_relations_gold
+from .words import get_word_metas
 
 
 def rtsip_to_tag(rel_type, rel_sense, rel_id, rel_part):
@@ -64,7 +64,7 @@ def get_rel_parts(relations_gold):
     """
 
     rel_parts = {}
-    for rel_id, gold in relations_gold.iteritems():
+    for rel_id, gold in relations_gold.items():
         doc_id = gold['DocID']
         punct_type = gold['Punctuation']['PunctuationType']
 
@@ -109,7 +109,7 @@ def get_rel_types(relations_gold, filter_types=None):
     """
 
     rel_types = {}
-    for rel_id, gold in relations_gold.iteritems():
+    for rel_id, gold in relations_gold.items():
         rel_type = gold['Type']
         if filter_types and rel_type not in filter_types:
             continue
@@ -124,7 +124,7 @@ def get_rel_senses(relations_gold, level=None, filter_senses=None):
     """
 
     rel_senses = {}
-    for rel_id, gold in relations_gold.iteritems():
+    for rel_id, gold in relations_gold.items():
         sfirst = gold['Sense'][0]  # only first sense
         if filter_senses and sfirst not in filter_senses:
             continue
@@ -142,7 +142,7 @@ def get_rel_senses_all(relations_gold, level=None, filter_senses=None):
         filter_senses = ()
 
     rel_senses_all = {}
-    for rel_id, gold in relations_gold.iteritems():
+    for rel_id, gold in relations_gold.items():
         slist = gold['Sense']
         slist = [ s for s in slist if s not in filter_senses ]
         slist = [ strip_sense_level(s, level) for s in slist ]  # strip to top level senses

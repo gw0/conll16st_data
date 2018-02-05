@@ -170,7 +170,7 @@ def add_relation_tags(word_metas, rel_types, rel_senses):
                 rel_sense_all = rel_senses[rel_id]
                 if isinstance(rel_sense_all, str):  # only first sense
                     rel_sense_all = (rel_sense_all,)
-                for rel_sense in rel_senses[rel_id]:
+                for rel_sense in rel_sense_all:
                     tags.append(rtsip_to_tag(rel_type, rel_sense, rel_id, rel_part))
 
             # save to metadata

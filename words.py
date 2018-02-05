@@ -85,11 +85,11 @@ def get_word_metas(parses, raws):
 
                 # discourse relations metadata
                 rel_ids = []
-                rel_spans = []
+                rel_parts = []
                 for linker in token[1]['Linkers']:
                     linker_span, rel_id = linker.rsplit(linker_split, 1)
                     rel_ids.append(int(rel_id))
-                    rel_spans.append(linker_to_span[linker_span])
+                    rel_parts.append(linker_to_span[linker_span])
 
                 # save metadata
                 meta = {
@@ -100,7 +100,7 @@ def get_word_metas(parses, raws):
                     'SentenceOffset': sentence_offset,
                     'TokenID': token_id,
                     'RelationIDs': tuple(rel_ids),
-                    'RelationParts': tuple(rel_spans),
+                    'RelationParts': tuple(rel_parts),
                 }
                 word_metas[doc_id].append(meta)
                 token_id += 1

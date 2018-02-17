@@ -3,6 +3,8 @@
 # pylint: disable=C0103
 """
 Process words/tokens from CoNLL16st corpus (from `parses.json` and `raw/`).
+
+$ pytest -s words.py
 """
 __author__ = "GW [http://gw.tnode.com/] <gw.2016@tnode.com>"
 __license__ = "GPLv3+"
@@ -52,6 +54,7 @@ def get_word_metas(parses, raws):
             'ParagraphID': 0,
             'SentenceID': 0,
             'SentenceOffset': 0,
+            'SentenceOffsetEnd': 0,
             'TokenID': 0,
             'RelationIDs': (14890,),
             'RelationParts': ('Arg1',),
@@ -71,6 +74,7 @@ def get_word_metas(parses, raws):
         word_metas[doc_id] = []
         for sentence_dict in parses[doc_id]['sentences']:
             sentence_offset = token_id  # first token number in sentence
+            sentence_offset_end = token_id + len(sentence_dict['words']) - 1  # last token number in sentence
 
             for token in sentence_dict['words']:
                 word = token[0]
@@ -98,6 +102,7 @@ def get_word_metas(parses, raws):
                     'ParagraphID': paragraph_id,
                     'SentenceID': sentence_id,
                     'SentenceOffset': sentence_offset,
+                    'SentenceOffsetEnd': sentence_offset_end,
                     'TokenID': token_id,
                     'RelationIDs': tuple(rel_ids),
                     'RelationParts': tuple(rel_parts),
@@ -141,6 +146,7 @@ def test_word_metas():
         'ParagraphID': 0,
         'SentenceID': 0,
         'SentenceOffset': 0,
+        'SentenceOffsetEnd': 29,
         'TokenID': 0,
         'RelationIDs': (14890,),
         'RelationParts': ('Arg1',),
@@ -151,6 +157,7 @@ def test_word_metas():
         'ParagraphID': 13,
         'SentenceID': 32,
         'SentenceOffset': 877,
+        'SentenceOffsetEnd': 895,
         'TokenID': 894,
         'RelationIDs': (14904, 14905),
         'RelationParts': ('Arg2', 'Arg2'),
@@ -161,6 +168,7 @@ def test_word_metas():
         'ParagraphID': 13,
         'SentenceID': 32,
         'SentenceOffset': 877,
+        'SentenceOffsetEnd': 895,
         'TokenID': 895,
         'RelationIDs': (),
         'RelationParts': (),

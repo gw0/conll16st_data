@@ -65,8 +65,8 @@ def load_raws(dataset_dir, doc_ids, raw_ffmts=None):
                     raws[doc_id] = f.read()
                 except UnicodeDecodeError:
                     f.close()
-                    # fallback to binary reading
-                    f = open(raw_ffmt.format(dataset_dir, doc_id), 'r')
+                    # fallback to latin-1 encoding
+                    f = codecs.open(raw_ffmt.format(dataset_dir, doc_id), 'r', encoding='latin-1')
                     raws[doc_id] = f.read()
                 f.close()
                 break  # skip other filenames

@@ -109,6 +109,8 @@ def load_relations_gold(dataset_dir, with_senses=True, with_rawtext=False, doc_i
         try:
             f = codecs.open(relations_ffmt.format(dataset_dir), 'r', encoding='utf8')
             for line in f:
+                if line.startswith('\x1b[?1034h'):  # ignore shell escape sequence in some datasets
+                    line = line[8:]
                 relation = json.loads(line)
 
                 # filter by document id

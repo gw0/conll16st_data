@@ -65,7 +65,7 @@ def encode_target(rel_type, rel_sense_all, rel_part=None, rel_id=None, lang='en'
         # for partial senses mark all subsenses
         for k in SENSES:
             if k.startswith(s):
-                senses.append(s)
+                senses.append(k)
     senses.sort(key=lambda s: -len(s))
     # only sense
     #return senses
@@ -93,7 +93,7 @@ def extract_sample(dataset, rel_id):
     def map_to_words(poss):
         return [ dataset['words'][doc_id][i] for i in poss ]
     arg1_words = map_to_words(dataset['rel_parts'][rel_id]['Arg1'])
-    arg2_words = map_to_words(dataset['rel_parts'][rel_id]['Arg1'])
+    arg2_words = map_to_words(dataset['rel_parts'][rel_id]['Arg2'])
     conn_words = map_to_words(dataset['rel_parts'][rel_id]['Connective'])
     punc_words = map_to_words(dataset['rel_parts'][rel_id]['Punctuation'])
 
@@ -138,6 +138,18 @@ log.info("load dataset ({})".format(args.dataset_dir))
 dataset = Conll16stDataset(args.dataset_dir, lang=args.lang, filter_types=filter_types, with_rel_senses_all=True)
 dataset['target'] = target_agg_labels(dataset)
 log.info("  " + dataset.summary())
+
+# gold labels distribution
+log.info("gold labels distribution")
+counts = {}
+for rel_id in dataset['rel_ids']:
+    for k in dataset['target'][rel_id]:
+        try:
+            counts[k] += 1
+        except KeyError:
+            counts[k] = 1
+for name, count in sorted(counts.items(), key=lambda a: a[1], reverse=True):
+    log.info("- {}: {}".format(name, count))
 
 # convert samples and save to JSONL format
 log.info("convert ({})".format(args.output_jsonl))

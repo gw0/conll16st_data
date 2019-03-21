@@ -7,6 +7,17 @@ Although the data format for the [*CoNLL 2016 Shared Task*](http://www.cs.brande
 - <http://github.com/attapol/conll16st/>
 - <http://github.com/gw0/conll16st_data/>
 
+Official CoNLL 2016 Shared Task datasets for English and Chinese:
+
+- `data/conll16st-en-03-29-16-train`: English training dataset from PDTB 2.0
+- `data/conll16st-en-03-29-16-dev`: English validation dataset from PDTB 2.0
+- `data/conll16st-en-03-29-16-test`: English test dataset from PDTB 2.0
+- `data/conll15st-en-03-29-16-blind-test`: English blind test dataset from English Wikinews
+- `data/conll16st-zh-01-08-2016-train`: Chinese training dataset from CDTB 0.5
+- `data/conll16st-zh-01-08-2016-dev`: Chinese validation dataset from CDTB 0.5
+- `data/conll16st-zh-01-08-2016-test`: Chinese test dataset from CDTB 0.5
+- `data/conll16st-zh-04-27-2016-blind-test`: Chinese blind test dataset from Chinese Wikinews
+
 
 Installation
 ============
@@ -62,6 +73,7 @@ In the above object all aspects of the dataset are accessible like a dictionary:
 - `train['rel_parts']` - argument 1, argument 2, connective, punctuation, and meta data of relations by [relation id]
 - `train['rel_types']` - relation types by [relation id]
 - `train['rel_senses']` - relation senses by [relation id]
+- `train['relations_gold']` - raw relation structure from gold dataset by [relation id]
 
 Alternatively load **dataset into Python dictionaries** and filter by document ids, discourse types and senses:
 
@@ -105,7 +117,7 @@ parses["wsj_1000"]['sentences'][0]['words'][0] = [
     {'CharacterOffsetEnd': 15, 'Linkers': ['arg1_14890'], 'PartOfSpeech': 'NNP', 'CharacterOffsetBegin': 9}
 ]
 raws["wsj_1000"] = ".START \n\nKemper Financial Services Inc., charging..."
-relations[14905] = {
+relations_gold[14905] = {
     'Arg1': {'CharacterSpanList': [[4564, 4610]], 'RawText': 'this prompts ...', 'TokenList': [[4564, 4568, 879, 32, 2], [4569, 4576, 880, 32, 3], ...]},
     'Arg2': {'CharacterSpanList': [[4557, 4560], [4617, 4650]], 'RawText': 'But it ...', 'TokenList': [[4557, 4560, 877, 32, 0], [4617, 4619, 889, 32, 12], ...]},
     'Connective': {'CharacterSpanList': [[4561, 4563], [4612, 4616]], 'RawText': 'if then', 'TokenList': [[4561, 4563, 878, 32, 1], [4612, 4616, 888, 32, 11]]},

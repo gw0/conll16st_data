@@ -80,7 +80,7 @@ def load_raws(dataset_dir, doc_ids, raw_ffmts=None):
 def load_relations_gold(dataset_dir, with_senses=True, with_rawtext=False, doc_ids=None, filter_types=None, filter_senses=None, filter_fn=None, relations_ffmts=None):
     """Load shallow discourse relations untouched by relation id from CoNLL16st corpus.
 
-        relations[14905] = {
+        relations_gold[14905] = {
             'Arg1': {'CharacterSpanList': [[4564, 4610]], 'RawText': 'this prompts ...', 'TokenList': [[4564, 4568, 879, 32, 2], [4569, 4576, 880, 32, 3], ...]},
             'Arg2': {'CharacterSpanList': [[4557, 4560], [4617, 4650]], 'RawText': 'But it ...', 'TokenList': [[4557, 4560, 877, 32, 0], [4617, 4619, 889, 32, 12], ...]},
             'Connective': {'CharacterSpanList': [[4561, 4563], [4612, 4616]], 'RawText': 'if then', 'TokenList': [[4561, 4563, 878, 32, 1], [4612, 4616, 888, 32, 11]]},
